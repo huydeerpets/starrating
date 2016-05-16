@@ -5,6 +5,7 @@ import ComposerController from 'discourse/controllers/composer';
 import ComposerView from 'discourse/views/composer';
 import Composer from 'discourse/models/composer';
 import Post from 'discourse/models/post';
+//import registerUnbound from 'discourse/helpers/register-unbound';
 import { registerUnbound } from 'discourse/lib/helpers';
 import renderUnboundRating from 'discourse/plugins/discourse-ratings/lib/render-rating';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
@@ -20,8 +21,8 @@ export default {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
         if (showRating && rating) {
-          var html = '<span class="rating"></span>';
-          return helper.rawHtml(`${html}`);
+          var html = new Handlebars.SafeString(renderUnboundRating(rating))
+          return helper.rawHtml(`${html}`)
         }
       })
     });
