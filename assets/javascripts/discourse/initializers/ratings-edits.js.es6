@@ -7,7 +7,7 @@ import Composer from 'discourse/models/composer';
 import Post from 'discourse/models/post';
 //import registerUnbound from 'discourse/helpers/register-unbound';
 import { registerUnbound } from 'discourse/lib/helpers';
-import { renderUnboundRating } from 'discourse/plugins/discourse-ratings/lib';
+import renderUnboundRating from 'discourse/plugins/discourse-ratings/lib/render-rating';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 
