@@ -19,10 +19,10 @@ export default {
       api.decorateWidget('poster-name:after', function(helper) {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
-        //if (showRating && rating) {
-          var html = new Handlebars.SafeString(renderUnboundRating(rating))
-          return helper.rawHtml(`${html}`)
-        //}
+        if (showRating && rating) {
+          var html = '<span class="rating"></span>';
+          return helper.rawHtml(`${html}`);
+        }
       })
     });
 
