@@ -8,7 +8,9 @@ import registerUnbound from 'discourse/helpers/register-unbound';
 import renderUnboundRating from 'discourse/plugins/discourse-ratings/lib/render-rating';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-
+  $(document).ready(function(){
+        $("#jRate").jRate();
+      });
 export default {
   name: 'ratings-edits',
   initialize(){
