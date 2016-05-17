@@ -3,7 +3,7 @@
 # version: 0.1
 # authors: Angus McLeod
 #register_asset "javascripts/reply-new-menu.js"
-#register_asset 'javascripts/jquery.min.js', :server_side
+register_asset 'javascripts/jquery.min.js'
 register_asset 'javascripts/jRate.js'
 register_asset 'stylesheets/ratings-desktop.scss', :desktop
 register_asset 'stylesheets/ratings-mobile.scss', :mobile
