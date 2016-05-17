@@ -1,13 +1,11 @@
-# name: dr
-# about: test
-# version: test
-# authors: test
+# name: discourse-ratings
+# about: A Discourse plugin that lets you use topics to rate things
+# version: 0.1
+# authors: Angus McLeod
 
 register_asset 'stylesheets/ratings-desktop.scss', :desktop
-
+register_asset 'stylesheets/ratings-mobile.scss', :mobile
 after_initialize do
-
-  Category.register_custom_field_type('rating_enabled', :boolean)
 
   module ::DiscourseRatings
     class Engine < ::Rails::Engine
@@ -21,37 +19,14 @@ after_initialize do
     def rate
       post = Post.find(params[:id].to_i)
       post.custom_fields["rating"] = params[:rating].to_i
-      post.custom_fields["rating_weight"] = 1
       post.save!
-      calculate_topic_average(post)
+      add_rating_to_topic_average(post)
     end
 
-    def weight
-      post = Post.with_deleted.find(params[:id].to_i)
-      post.custom_fields["rating_weight"] = params[:weight].to_i
-      post.save!
-      calculate_topic_average(post)
-    end
-
-    def remove
-      id = params[:id].to_i
-      post = Post.find(id)
-      PostCustomField.destroy_all(post_id: id, name:"rating")
-      PostCustomField.destroy_all(post_id: id, name:"rating_weight")
-      calculate_topic_average(post)
-    end
-
-    def calculate_topic_average(post)
-      @topic_posts = Post.with_deleted.where(topic_id: post.topic_id)
-      @ratings = []
-      @topic_posts.each do |tp|
-        weight = tp.custom_fields["rating_weight"]
-        if tp.custom_fields["rating"] && (weight.blank? || weight.to_i > 0)
-          rating = tp.custom_fields["rating"].to_i
-          @ratings.push(rating)
-        end
-      end
-      average = @ratings.empty? ? nil : @ratings.inject(:+).to_f / @ratings.length
+    def add_rating_to_topic_average(post)
+      @topic_posts = Post.where(topic_id: post.topic_id)
+      @all_ratings = PostCustomField.where(post_id: @topic_posts.map(&:id), name: "rating").pluck('value').map(&:to_i)
+      average = @all_ratings.inject(:+).to_f / @all_ratings.length
       post.topic.custom_fields["average_rating"] = average
       post.topic.save!
       push_updated_ratings_to_clients!(post, average)
@@ -83,8 +58,6 @@ after_initialize do
 
   DiscourseRatings::Engine.routes.draw do
     post "/rate" => "rating#rate"
-    post "/weight" => "rating#weight"
-    post "/remove" => "rating#remove"
   end
 
   Discourse::Application.routes.append do
@@ -92,7 +65,7 @@ after_initialize do
   end
 
   TopicView.add_post_custom_fields_whitelister do |user|
-    ["rating", "rating_weight"]
+    ["rating"]
   end
 
   TopicList.preloaded_custom_fields << "average_rating" if TopicList.respond_to? :preloaded_custom_fields
@@ -106,18 +79,14 @@ after_initialize do
     end
 
     def show_ratings
-      topic = object.topic
-      has_rating_tag = TopicCustomField.exists?(topic_id: topic.id, name: "tags", value: "rating")
-      has_ratings_enabled = topic.category.respond_to?(:custom_fields) ? topic.category.custom_fields["rating_enabled"] : false
-      has_rating_tag || has_ratings_enabled
+      has_rating_tag = TopicCustomField.exists?(topic_id: object.topic.id, name: "tags", value: "rating")
+      has_rating_tag || !!object.topic.category.custom_fields["rating_enabled"]
     end
 
     def can_rate
-      return false if !scope.current_user
-      ## This should be replaced with a :rated? property in TopicUser - but how to do this in a plugin?
-      @user_posts = object.posts.select{ |post| post.user_id === scope.current_user.id}
-      rated = PostCustomField.exists?(post_id: @user_posts.map(&:id), name: "rating")
-      show_ratings && !rated
+      user = object.topic_user
+      return true if !user.respond_to?(:posted?)
+      show_ratings && !user.posted?
     end
 
   end
@@ -131,7 +100,6 @@ after_initialize do
     end
 
     def show_average
-      return false if !average_rating
       has_rating_tag = TopicCustomField.exists?(topic_id: object.id, name: "tags", value: "rating")
       is_rating_category = CategoryCustomField.where(category_id: object.category_id, name: "rating_enabled").pluck('value')
       has_rating_tag || is_rating_category.first == "true"
@@ -139,6 +107,6 @@ after_initialize do
   end
 
   ## Add the new fields to the serializers
-  add_to_serializer(:basic_category, :rating_enabled) {object.custom_fields["rating_enabled"]}
+  add_to_serializer(:basic_category, :rating_enabled) {object.custom_fields["rating_enabled"] == 'true'}
   add_to_serializer(:post, :rating) {post_custom_fields["rating"]}
 end

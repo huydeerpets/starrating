@@ -1,6 +1,6 @@
 var renderUnboundRating = function(rating) {
   var stars = ''
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 10; i++) {
     var value = i + 1,
         checked = value <= rating ? 'checked' : '',
         disabled = disabled ? 'disabled' : '',
