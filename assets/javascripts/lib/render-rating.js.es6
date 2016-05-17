@@ -8,6 +8,7 @@ var renderUnboundRating = function(rating) {
     stars = stars.concat(star)
   }
   return '<div id="jRate" style="height:50px;width: 200px;"></div>	<script type="text/javascript">$("#jRate").jRate();</script>';
+  
 };
 
 export default renderUnboundRating;
