@@ -164,9 +164,9 @@ export default {
       }.observes('controller.showRating')
     })
 
-    registerUnbound('rating-unbound', function(rating) {
+    registerUnbound('rating-unbound', function(rating,helper) {
 	
-	var postid = this.get('model.post').id;	
+	var postid = helper.getModel().post.id;	
       return new Handlebars.SafeString(renderUnboundRating(rating,postid));
     });
 
