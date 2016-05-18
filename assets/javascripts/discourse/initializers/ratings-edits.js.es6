@@ -8,7 +8,7 @@ import registerUnbound from 'discourse/helpers/register-unbound';
 import renderUnboundRating from 'discourse/plugins/discourse-ratings/lib/render-rating';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-  
+
 export default {
   name: 'ratings-edits',
   initialize(){
@@ -18,12 +18,7 @@ export default {
       api.decorateWidget('poster-name:after', function(helper) {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
-		
-		var model = this.get('model')
-        if (!model) {return false}
-        
-		var post = this.get('model.post');
-	    var postid = post.id;
+		var postid = helper.getModel().post.id;	
         if (showRating && rating) {
           var html = new Handlebars.SafeString(renderUnboundRating(rating,postid))
           return helper.rawHtml(`${html}`)
@@ -170,11 +165,7 @@ export default {
     })
 
     registerUnbound('rating-unbound', function(rating) {
-	var model = this.get('model')
-        if (!model) {return false}
-        
-		var post = this.get('model.post');
-	    var postid = post.id;
+	var postid = helper.getModel().post.id;	
       return new Handlebars.SafeString(renderUnboundRating(rating,postid));
     });
 
