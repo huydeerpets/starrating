@@ -20,7 +20,7 @@ export default {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
         if (showRating && rating) {
-		const postId = parseInt($el.closest('article').data('post-id'));
+		const postId = parseInt(this.closest('article').data('post-id'));
           var html = new Handlebars.SafeString(renderUnboundRating(rating,postId))
           return helper.rawHtml(`${html}`)
         }
