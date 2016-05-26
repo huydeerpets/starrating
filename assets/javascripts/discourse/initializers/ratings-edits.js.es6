@@ -20,7 +20,8 @@ export default {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
         if (showRating && rating) {
-          var html = new Handlebars.SafeString(renderUnboundRating(rating))
+		const postId = parseInt($el.closest('article').data('post-id'));
+          var html = new Handlebars.SafeString(renderUnboundRating(rating,postId))
           return helper.rawHtml(`${html}`)
         }
       })
@@ -215,7 +216,8 @@ export default {
     })
 
     registerUnbound('rating-unbound', function(rating) {
-      return new Handlebars.SafeString(renderUnboundRating(rating));
+	
+      return new Handlebars.SafeString(renderUnboundRating(rating,postId));
     });
 
   }
