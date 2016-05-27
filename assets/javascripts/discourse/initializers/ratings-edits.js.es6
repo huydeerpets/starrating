@@ -216,7 +216,7 @@ export default {
     })
 
     registerUnbound('rating-unbound', function(rating,postId) {
-	var postId = parseInt(this.closest('article').data('post-id'));
+	
       return new Handlebars.SafeString(renderUnboundRating(rating,postId));
     });
 
