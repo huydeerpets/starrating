@@ -7,7 +7,8 @@ var renderUnboundRating = function(topic) {
         star = '<input type="radio" value="' + value + '" ' + checked + ' disabled><i></i>';
     stars = stars.concat(star)
   }
-  return '<span id="'+ topic.id + '" class="rating">' + stars + '</span>';
+  //return '<span id="'+ topic.id + '" class="rating">' + stars + '</span>';
+  return '<div id="' + 'jRate' + topic.id + '" style="height:50px;width: 200px;"></div><script type="text/javascript">$(document).ready(function(){$("#jRate' + topic.id + '").jRate();});</script>';
 };
 
 export default renderUnboundRating;
