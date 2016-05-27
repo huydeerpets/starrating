@@ -215,9 +215,9 @@ export default {
       }.observes('controller.showRating')
     })
 
-    registerUnbound('rating-unbound', function(rating,postId) {
+    registerUnbound('rating-unbound', function(rating) {
 	
-      return new Handlebars.SafeString(renderUnboundRating(rating,postId));
+      return new Handlebars.SafeString(renderUnboundRating(rating));
     });
 
   }
