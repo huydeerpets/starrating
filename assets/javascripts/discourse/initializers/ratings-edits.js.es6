@@ -20,9 +20,7 @@ export default {
         var rating = helper.attrs.rating,
             showRating = helper.getModel().topic.show_ratings;
         if (showRating && rating) {
-		$( document ).ready(function() {
-			$("#jRate" +helper.getModel().topic.id).jRate();
-		});
+		
           var html = new Handlebars.SafeString(renderUnboundRating(helper.getModel().topic))
           return helper.rawHtml(`${html}`)
         }
