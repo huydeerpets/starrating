@@ -26,9 +26,9 @@ export default {
         }
       })
     });
-//$( document ).ready(function() {
-//    $("#jRate49").jRate();
-//});
+$( document ).ready(function() {
+   $("#jRate49").jRate();
+});
     TopicController.reopen({
       refreshAfterTopicEdit: false,
 
