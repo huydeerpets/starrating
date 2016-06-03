@@ -5,8 +5,7 @@
 #register_asset "javascripts/jquery.min.js"
 
 register_asset "javascripts/jRate.js"
-register_asset 'stylesheets/ratings-desktop.scss', :desktop
-register_asset 'stylesheets/ratings-mobile.scss', :mobile
+#register_asset 'stylesheets/ratings-desktop.scss', :desktop
 
 after_initialize do
 
