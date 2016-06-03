@@ -78,7 +78,35 @@ export default {
         }
       }
     })
- 
+ TopicListItem.reopen({
+      
+		
+        
+     
+      // @on('didInsertElement')
+      // _setupDOM() {
+       
+            // this._rearrangeDOM()
+        
+      // },
+
+	  
+	  // /*
+	  
+	  // <script type="text/javascript">$(document).ready(function() {$("#jRate' + topic.id + '").jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1});});</script>
+	  // */
+      // _rearrangeDOM() {
+	  // var topic = this.get('topic'),
+		// this.$('#jRate' + topic.id + ').jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1}')
+        // this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
+        // this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
+        // this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+
+       
+      // }
+
+     
+    })
     Post.reopen({
       setRatingWeight: function() {
         if (!this.get('topic.show_ratings')) {return}
