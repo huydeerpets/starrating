@@ -44,7 +44,18 @@ export default {
           })
         }
       }.observes('model.postStream.loaded'),
-
+	@on('didInsertElement')
+       _setupDOM() {
+       
+            // this._rearrangeDOM()
+        var topic = this.get('topic')
+		this.$('#jRate'+topic.id).jRate({rating: topic.average_rating,width: 40,height: 40,precision: 0.1,minSelected:1})
+        //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
+        //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
+        this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+		
+		
+       }
       showRating: function() {
         if (this.get('model.average_rating') < 1) {return false}
         if (!this.get('editingTopic')) {return this.get('model.show_ratings')}
@@ -89,7 +100,7 @@ export default {
        
             // this._rearrangeDOM()
         var topic = this.get('topic')
-		this.$('#jRate'+topic.id).jRate({rating: 10,width: 40,height: 40,precision: 0.1,minSelected:1})
+		this.$('#jRate'+topic.id).jRate({rating: topic.average_rating,width: 40,height: 40,precision: 0.1,minSelected:1})
         //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
         //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
         this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
