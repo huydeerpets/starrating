@@ -1,6 +1,7 @@
 import Topic from 'discourse/models/topic';
 import TopicController from 'discourse/controllers/topic';
 import TopicRoute from 'discourse/routes/topic';
+import TopicListItem from 'discourse/components/topic-list-item';
 import ComposerController from 'discourse/controllers/composer';
 import ComposerView from 'discourse/views/composer';
 import Composer from 'discourse/models/composer';
@@ -26,9 +27,9 @@ export default {
         }
       })
     });
-$( document ).ready(function() {
-   $("#jRate49").jRate();
-});
+// $( document ).ready(function() {
+   // $("#jRate49").jRate();
+// });
     TopicController.reopen({
       refreshAfterTopicEdit: false,
 
@@ -77,7 +78,37 @@ $( document ).ready(function() {
         }
       }
     })
+ TopicListItem.reopen({
+      
+		@on('init')
+     
+          const topic = this.get('topic');
+        
+      },
+      @on('didInsertElement')
+      _setupDOM() {
+       
+            this._rearrangeDOM()
+        
+      },
 
+	  
+	  /*
+	  
+	  <script type="text/javascript">$(document).ready(function() {$("#jRate' + topic.id + '").jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1});});</script>
+	  */
+      _rearrangeDOM() {
+	  var topic = this.get('topic'),
+		this.$('#jRate' + topic.id + ').jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1}')
+        this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
+        this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
+        this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+
+       
+      },
+
+     
+    })
     Post.reopen({
       setRatingWeight: function() {
         if (!this.get('topic.show_ratings')) {return}
@@ -216,8 +247,18 @@ $( document ).ready(function() {
         }
       }.observes('controller.showRating')
     })
-	function spoil($elem) {
-		$('.spoiler', $elem).removeClass('spoiler').addClass('spoiled').spoil();
+	function renderUnboundRating2(topic) {
+		//$('.spoiler', $elem).removeClass('spoiler').addClass('spoiled').spoil();
+		//var stars = ''
+		//for (var i = 0; i < 5; i++) {
+		//	var value = i + 1,
+			//checked = value <= topic.average_rating ? 'checked' : '',
+			//disabled = disabled ? 'disabled' : '',
+			//star = '<input type="radio" value="' + value + '" ' + checked + ' disabled><i></i>';
+			//stars = stars.concat(star)
+		//}
+  //return '<span id="'+ topic.id + '" class="rating">' + stars + '</span>';
+		return '<script type="text/javascript">$(document).ready(function() {$("#jRate' + topic.id + '").jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1});});</script><div id="' + 'jRate' + topic.id + '" style="height:50px;width: 200px;"></div>';
 	}
     registerUnbound('rating-unbound', function(topic) {
 	
