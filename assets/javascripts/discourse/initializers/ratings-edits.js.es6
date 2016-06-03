@@ -89,7 +89,7 @@ export default {
        
             // this._rearrangeDOM()
         var topic = this.get('topic')
-		this.$('#jRate'+topic.id).jRate({rating:topic.average_rating,width: 30,height: 30,precision: 0.1,count: 10,minSelected:1})
+		this.$('#jRate'+topic.id).jRate({rating:topic.average_rating,width: 30,height: 30,precision: 0.5,count: 10,minSelected:1})
         //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
         //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
         //this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
