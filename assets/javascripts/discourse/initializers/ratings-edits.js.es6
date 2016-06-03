@@ -89,10 +89,12 @@ export default {
        
             // this._rearrangeDOM()
         var topic = this.get('topic')
-		this.$('"#jRate' + topic.id + '").jRate({rating: '+ topic.average_rating + ',width: 80,height: 80,precision: 0.1,minSelected:1}')
+		this.$('#jRate' + topic.id + ).jRate({rating: + topic.average_rating + ,width: 80,height: 80,precision: 0.1,minSelected:1})
         //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
         //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
-        //this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+        this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+		
+		"#jRate6").jRate({rating: null,width: 80,height: 80,precision: 0.1,minSelected:1}
        }
 
 	  
