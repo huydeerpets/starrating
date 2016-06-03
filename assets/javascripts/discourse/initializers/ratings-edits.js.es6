@@ -80,11 +80,9 @@ export default {
     })
  TopicListItem.reopen({
       
-		@on('init')
-     
-          const topic = this.get('topic');
+		
         
-      },
+     
       @on('didInsertElement')
       _setupDOM() {
        
@@ -105,7 +103,7 @@ export default {
         this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
 
        
-      },
+      }
 
      
     })
