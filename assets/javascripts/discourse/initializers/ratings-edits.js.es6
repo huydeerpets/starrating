@@ -2,6 +2,7 @@ import Topic from 'discourse/models/topic';
 import TopicController from 'discourse/controllers/topic';
 import TopicRoute from 'discourse/routes/topic';
 import TopicListItem from 'discourse/components/topic-list-item';
+import { default as computed, on, observes } from 'ember-addons/ember-computed-decorators';
 import ComposerController from 'discourse/controllers/composer';
 import ComposerView from 'discourse/views/composer';
 import Composer from 'discourse/models/composer';
