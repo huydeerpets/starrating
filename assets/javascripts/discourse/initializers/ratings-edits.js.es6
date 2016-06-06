@@ -94,9 +94,10 @@ export default {
 				onChange: function(rating){
 					$('#jRate'+topic.id).text(rating);
 				}, 
-				
-				width: 30,
-				height: 30,
+				min:0,
+				max:10,
+				width: 25,
+				height: 25,
 				precision: 1,
 				count: 10,
 				minSelected:1,
