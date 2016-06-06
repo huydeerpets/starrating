@@ -100,8 +100,8 @@ export default {
 				height: 25,
 				precision: 1,
 				count: 10,
-				minSelected:1,
-				readOnly:true
+				minSelected:1
+				
 			})
         //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
         //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
