@@ -91,16 +91,17 @@ export default {
         var topic = this.get('topic')
 		this.$('#jRate'+topic.id).jRate({
 				rating:topic.average_rating,
-				onChange: function(rating){
-					$('#jRate'+topic.id).text(rating);
-				}, 
+				//onChange: function(rating){
+				//	$('#jRate'+topic.id).text(rating);
+				//}, 
 				min:0,
 				max:10,
-				width: 25,
-				height: 25,
+				width: 23,
+				height: 23,
 				precision: 1,
 				count: 10,
-				minSelected:1
+				minSelected:1,
+				readOnly:true
 				
 			})
         //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
