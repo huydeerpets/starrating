@@ -90,10 +90,11 @@ export default {
             // this._rearrangeDOM()
         var topic = this.get('topic')
 		this.$('#jRate'+topic.id).jRate({
-				onChange: function(rating){
-					$('#jRate'+topic.id').text(rating);
-				}, 
 				rating:topic.average_rating,
+				onChange: function(rating){
+					$('#jRate'+topic.id).text(rating);
+				}, 
+				
 				width: 30,
 				height: 30,
 				precision: 1,
