@@ -1,8 +1,13 @@
-{{#if context.topic.show_average}}
-  <div class="topic-rating">
-    {{rating-unbound context.topic}}
-    {{#if context.siteSettings.show_exact_average_rating}}
-      <span class="exact-rating">({{context.topic.average_rating}})</span>
+{{#if showRating}}
+  {{d-rating rating=model.average_rating}}
+  {{rating-unbound context.topic}}
+  {{#if this.siteSettings.show_exact_average_rating}}
+    <span class="title-text">({{model.average_rating}})</span>
+  {{/if}}
+{{else}}
+  {{#if model.average_rating}}
+    {{#if currentUser.admin}}
+      <span class="exact-rating">{{i18n "topic.hidden_ratings"}}</span>
     {{/if}}
-  </div>
+  {{/if}}
 {{/if}}
