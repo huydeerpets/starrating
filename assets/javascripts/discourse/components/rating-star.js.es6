@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   willInsertElement: function() {
    
 	this.$('#jRate').jRate({
-				rating:rating,
+				rating:10,
 				
 				min:0,
 				max:10,
