@@ -143,7 +143,34 @@ export default {
           popupAjaxError(error);
         });
       }.observes('deleted')
-    })
+    
+	@on('didInsertElement')
+       _setupDOM() {
+       
+            // this._rearrangeDOM()
+        var topic = this.get('topic')
+		this.$('#jRate').jRate({
+				rating:topic.average_rating,
+				//onChange: function(rating){
+				//	$('#jRate'+topic.id).text(rating);
+				//}, 
+				min:0,
+				max:10,
+				width: 23,
+				height: 23,
+				precision: 1,
+				count: 10,
+				minSelected:1,
+				readOnly:true
+				
+			})
+        //this.$('.main-link').children().not('.topic-thumbnail').wrapAll("<div class='topic-details' />")
+        //this.$('.topic-details').children('.topic-statuses, .title, .topic-post-badges').wrapAll("<div class='topic-title'/>")
+        //this.$('.topic-thumbnail').prependTo(this.$('.main-link')[0])
+		
+		
+       }
+	})
 
     ComposerController.reopen({
       rating: null,

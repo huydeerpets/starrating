@@ -4,7 +4,20 @@ export default Ember.Component.extend({
   attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
 
   willInsertElement: function() {
-    this.$().prop('type', 'radio')
+   
+	this.$('#jRate').jRate({
+				rating:rating,
+				
+				min:0,
+				max:10,
+				width: 23,
+				height: 23,
+				precision: 1,
+				count: 10,
+				minSelected:1,
+				readOnly:true
+				
+			})
   },
 
   click: function() {
@@ -14,5 +27,5 @@ export default Ember.Component.extend({
   checked: function() {
     return this.get("value") <= this.get("rating")
   }.property('rating'),
-
+//topic-rating
 });
