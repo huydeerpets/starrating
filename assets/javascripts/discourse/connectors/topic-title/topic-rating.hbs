@@ -1,5 +1,6 @@
 {{#if showRating}}
-  {{d-rating rating=model.average_rating}}
+  
+  {{rating-unbound context.topic}}
   {{#if this.siteSettings.show_exact_average_rating}}
     <span class="title2-text">({{model.average_rating}})</span>
   {{/if}}
