@@ -1,7 +1,7 @@
 export default Ember.Component.extend({
   tagName: "div",
   //disabled: Ember.computed.not('enabled'),
-  //attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
+  attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
 
   //willInsertElement: function() {
     //this.$().prop('type', 'radio')
@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   //},
 	didInsertElement: function() {
             Ember.$('#jRate').jRate(
-			rating:10,
+			rating:this.rating,
 				//onChange: function(rating){
 				//	$('#jRate'+topic.id).text(rating);
 				//}, 

@@ -1,8 +1,8 @@
 {{#if showRating}}
   {{d-rating rating=model.average_rating}}
-<div id="jRate">
+
   {{#if this.siteSettings.show_exact_average_rating}}
-    <span class="title-text">({{model.average_rating}})</span></div>
+    <span class="title-text">({{model.average_rating}})</span>
   {{/if}}
 {{else}}
   {{#if model.average_rating}}
