@@ -23,7 +23,7 @@ export default Ember.Component.extend({
 				readOnly:true
 				
 			); // will work
-    },
+    }
 	
 	
   //click: function() {
