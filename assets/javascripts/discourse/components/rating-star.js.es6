@@ -7,23 +7,15 @@ export default Ember.Component.extend({
     //this.$().prop('type', 'radio')
 	this.$().prop('id', 'jRate')
   },
-	didInsertElement: function() {
-            this.$('#jRate').jRate({
-				rating:rating,
-				//onChange: function(rating){
-				//	$('#jRate'+topic.id).text(rating);
-				//}, 
-				min:0,
-				max:10,
-				width: 23,
-				height: 23,
-				precision: 1,
-				count: 10,
-				minSelected:1
-				
-				
-			})
-    }
+	//didInsertElement: function() {
+    //        this.$('#jRate').jRate()
+    //},
+	_initialize: function({
+  Ember.run.scheduleOnce('afterRender', this, function() {
+    this.$('#jRate').jRate()
+  });
+}).on('didInsertElement')
+	
   //click: function() {
     //this.set("rating", this.$().val());
   //},
