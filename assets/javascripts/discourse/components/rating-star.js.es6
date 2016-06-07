@@ -4,20 +4,8 @@ export default Ember.Component.extend({
   attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
 
   willInsertElement: function() {
-   
-	this.$('#jRate').jRate({
-				rating:10,
-				
-				min:0,
-				max:10,
-				width: 23,
-				height: 23,
-				precision: 1,
-				count: 10,
-				minSelected:1,
-				readOnly:true
-				
-			})
+    this.$().prop('type', 'radio')
+	
   },
 
   click: function() {
