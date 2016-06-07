@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   //},
 	didInsertElement: function() {
             Ember.$('#jRate').jRate(
-			rating:this.rating,
+			rating:10,
 				//onChange: function(rating){
 				//	$('#jRate'+topic.id).text(rating);
 				//}, 
