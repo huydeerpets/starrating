@@ -1,14 +1,28 @@
 export default Ember.Component.extend({
   tagName: "div",
   //disabled: Ember.computed.not('enabled'),
-  //attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
+  attributeBindings: [ "value"],
 
-  willInsertElement: function() {
+  //willInsertElement: function() {
     //this.$().prop('type', 'radio')
-	this.$().prop('id', 'jRate')
-  },
+	//this.$().prop('id', 'jRate')
+  //},
 	didInsertElement: function() {
-            Ember.$('#jRate').jRate(); // will work
+            Ember.$('#jRate').jRate(
+			rating:value,
+				//onChange: function(rating){
+				//	$('#jRate'+topic.id).text(rating);
+				//}, 
+				min:0,
+				max:10,
+				width: 23,
+				height: 23,
+				precision: 1,
+				count: 10,
+				minSelected:1,
+				readOnly:true
+				
+			); // will work
     },
 	
 	
