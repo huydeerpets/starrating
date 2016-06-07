@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 	this.$().prop('id', 'jRate')
   },
 	didInsertElement: function() {
-            this.$('#jRate').jRate()
+            Ember.$('#jRate').jRate(); // will work
     },
 	
 	
