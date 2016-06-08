@@ -13,11 +13,11 @@ export default Ember.Component.extend({
 				//onChange: function(rating){
 				//	$('#jRate'+topic.id).text(rating);
 				//}, 
-				min:0,
-				max:10,
-				width: 23,
-				height: 23,
-				precision: 1,
+				//min:0,
+				//max:10,
+				//width: 23,
+				//height: 23,
+				//precision: 1,
 				count: 10,
 				minSelected:1,
 				readOnly:true
