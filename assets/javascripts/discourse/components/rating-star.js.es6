@@ -8,7 +8,19 @@ export default Ember.Component.extend({
 	this.$().prop('class', rating)
   },
 	didInsertElement: function() {
-            Ember.$('#jRate').jRate(rating:10); // will work
+            Ember.$('#jRate').jRate({
+				rating:rating,
+				//onChange: function(rating){
+				//	$('#jRate'+topic.id).text(rating);
+				//}, 
+				min:0,
+				max:10,
+				width: 23,
+				height: 23,
+				precision: 1,
+				count: 10,
+				minSelected:1,
+				readOnly:true}); // will work
     },
 	
 	
