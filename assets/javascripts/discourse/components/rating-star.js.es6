@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 				precision: 1,
 				count: 10,
 				minSelected:1,
-				readOnly:true}); // will work
+				readOnly:this.get("enabled")}); // will work
     },
 	
 	
