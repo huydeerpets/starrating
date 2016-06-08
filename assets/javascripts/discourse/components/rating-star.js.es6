@@ -3,12 +3,12 @@ export default Ember.Component.extend({
   //disabled: Ember.computed.not('enabled'),
   //attributeBindings: [ "value", "checked:checked", "disabled:disabled"],
 
-  //willInsertElement: function() {
+  willInsertElement: function() {
     //this.$().prop('type', 'radio')
-	//this.$().prop('id', 'jRate')
-  //},
+	this.$().prop('class', rating)
+  },
 	didInsertElement: function() {
-            Ember.$('#jRate').jRate(); // will work
+            Ember.$('#jRate').jRate(rating:10); // will work
     },
 	
 	
