@@ -5,11 +5,11 @@ export default Ember.Component.extend({
 
   willInsertElement: function() {
     //this.$().prop('type', 'radio')
-	this.$().prop('class', rating)
+	this.$().prop('class', this.get("rating"))
   },
 	didInsertElement: function() {
             Ember.$('#jRate').jRate({
-				rating:rating,
+				rating:this.get("rating"),
 				//onChange: function(rating){
 				//	$('#jRate'+topic.id).text(rating);
 				//}, 
